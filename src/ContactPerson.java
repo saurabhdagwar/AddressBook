@@ -45,6 +45,24 @@ public class ContactPerson {
         return zip;
     }
 
+    public void setAddress(String address){
+        this.address = address;
+    }
+
+    public void setCity(String city){
+        this.city = city;
+    }
+    public void setState(String state){
+        this.state = state;
+    }
+
+    public void setZip( long zip){
+        this.zip = zip;
+    }
+
+    public void setNumber( long phonenumber){
+        this.phonenumber = phonenumber;
+    }
     public String toString() {
         return "Name: " + fname + " " + lname + ", Address: " + address + ", City: " + city + ",State: " + state + ",Phone: " + phonenumber + ",Pin Code: " + zip +" | " ;
     }
