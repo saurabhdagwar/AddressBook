@@ -25,8 +25,8 @@ public class AddressBook {
         long phonenumber = scan.nextLong();
 
         ContactPerson person1 = new ContactPerson(fname, lname, address, city, state, zip, phonenumber);
-        contact.addPerson(person1);
 
+        contact.addPerson(person1);
         contact.printContact();
     }
 
