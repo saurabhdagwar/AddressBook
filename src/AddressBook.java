@@ -4,31 +4,25 @@ import java.util.Scanner;
 public class AddressBook {
     static Scanner scan = new Scanner(System.in);
     public static ArrayList<ContactPerson> people = new ArrayList<ContactPerson>();
-    public static ArrayList<String> peopleCities = new ArrayList<>();
-    public static ArrayList<String> peopleStates = new ArrayList<>();
     static final int ZERO = 0, ONE = 1, TWO = 2;
 
     public static void main(String args[]) {
         int choice = 0;
         AddressBook contact = new AddressBook();
         System.out.println("----- Welcome to Address Book Program -----");
-        while (choice < 8) {
+        while (choice < 6) {
             System.out.println("\nEnter your choice " +
                     "\n\t 1.Add Contact " +
                     "\n\t 2.PrintContact " +
                     "\n\t 3.Edit Contact " +
                     "\n\t 4.Delete Contact" +
-                    "\n\t 5. Sorting by First Name" +
-                    "\n\t 6. Sorting by City Name" +
-                    "\n\t 7. View Cities and State of Contacts" +
-                    "\n\t 8. Exit from menu ");
+                    "\n\t 6. Exit from menu ");
             choice = scan.nextInt();
             switch (choice) {
                 case 1:
                     contact.addPerson();
                     break;
                 case 2:
-                    System.out.println("Printing All Contacts ");
                     contact.printContact();
                     break;
                 case 3:
@@ -36,15 +30,6 @@ public class AddressBook {
                     break;
                 case 4:
                     contact.deleteContact();
-                    break;
-                case 5:
-                    contact.sortByName();
-                    break;
-                case 6:
-                    contact.sortByCity();
-                    break;
-                case 7:
-                    contact.viewCityState();
                     break;
             }
         }
@@ -116,71 +101,6 @@ public class AddressBook {
             }
         }
     }
-
-    public void sortByName() {
-        String tmpfname, tmplname, tmpaddr, tmpcity, tmpstate;
-        long tmpzip, tmpmobNo;
-        for (int count1 = ZERO; count1 < people.size() - 1; count1++) {
-            for (int count2 = count1 + 1; count2 < people.size(); count2++) {
-                if (people.get(count1).getfname().compareTo(people.get(count2).getfname()) > 0) {
-                    tmpfname = people.get(count2).getfname();
-                    people.get(count2).setfname(people.get(count1).getfname());
-                    people.get(count1).setfname(tmpfname);
-                    tmplname = people.get(count2).getlname();
-                    people.get(count2).setlname(people.get(count1).getlname());
-                    people.get(count1).setlname(tmplname);
-                    tmpaddr = people.get(count2).getAddress();
-                    people.get(count2).setAddress(people.get(count1).getAddress());
-                    people.get(count1).setAddress(tmpaddr);
-                    tmpcity = people.get(count2).getCity();
-                    people.get(count2).setCity(people.get(count1).getCity());
-                    people.get(count1).setCity(tmpcity);
-                    tmpstate = people.get(count2).getState();
-                    people.get(count2).setState(people.get(count1).getState());
-                    people.get(count1).setState(tmpstate);
-                    tmpzip = people.get(count2).getZip();
-                    people.get(count2).setZip(people.get(count1).getZip());
-                    people.get(count1).setZip(tmpzip);
-                    tmpmobNo = people.get(count2).getPhonenumber();
-                    people.get(count2).setNumber(people.get(count1).getPhonenumber());
-                    people.get(count1).setNumber(tmpmobNo);
-                }
-            }
-        }
-    }
-
-    public void sortByCity() {
-        String tmpfname, tmplname, tmpaddr, tmpcity, tmpstate;
-        long tmpzip, tmpmobNo;
-        for (int count1 = ZERO; count1 < people.size() - 1; count1++) {
-            for (int count2 = count1 + 1; count2 < people.size(); count2++) {
-                if (people.get(count1).getCity().compareTo(people.get(count2).getCity()) > 0) {
-                    tmpfname = people.get(count2).getfname();
-                    people.get(count2).setfname(people.get(count1).getfname());
-                    people.get(count1).setfname(tmpfname);
-                    tmplname = people.get(count2).getlname();
-                    people.get(count2).setlname(people.get(count1).getlname());
-                    people.get(count1).setlname(tmplname);
-                    tmpaddr = people.get(count2).getAddress();
-                    people.get(count2).setAddress(people.get(count1).getAddress());
-                    people.get(count1).setAddress(tmpaddr);
-                    tmpcity = people.get(count2).getCity();
-                    people.get(count2).setCity(people.get(count1).getCity());
-                    people.get(count1).setCity(tmpcity);
-                    tmpstate = people.get(count2).getState();
-                    people.get(count2).setState(people.get(count1).getState());
-                    people.get(count1).setState(tmpstate);
-                    tmpzip = people.get(count2).getZip();
-                    people.get(count2).setZip(people.get(count1).getZip());
-                    people.get(count1).setZip(tmpzip);
-                    tmpmobNo = people.get(count2).getPhonenumber();
-                    people.get(count2).setNumber(people.get(count1).getPhonenumber());
-                    people.get(count1).setNumber(tmpmobNo);
-                }
-            }
-        }
-    }
-
     public void deleteContact() {
         if (people.isEmpty()) {
             System.out.println("There is no contact to delete");
@@ -200,36 +120,24 @@ public class AddressBook {
             System.out.println("There are no contact to print ");
         } else {
             for (ContactPerson contact : people) {
+                System.out.println("Printing Contacts ");
                 System.out.println(contact);
             }
         }
     }
 
-   public boolean checkExist(String name)
+    public boolean checkExist(String name)
     {
         int flag = ZERO;
         for(ContactPerson person : people){
-            if (person.getfname().equals(name)) {
+            if(person.getfname().equals(name)){
                 flag = 1;
                 break;
             }
         }
-        return flag == ONE;
-    }
-
-    public void viewCityState() {
-        for (ContactPerson person : people) {
-            peopleCities.add(person.getCity());
+        if(flag == ONE ){
+            return true;
         }
-        for (ContactPerson person : people) {
-            peopleStates.add(person.getState());
-        }
-        System.out.print("Cities of Contacts : \t ");
-            System.out.println(peopleCities);
-
-        System.out.print("States of Contacts : \t ");
-            System.out.println(peopleStates);
-
+        return false;
     }
-
 }
