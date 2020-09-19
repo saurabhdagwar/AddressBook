@@ -2,36 +2,23 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
-<<<<<<< HEAD
-    static final int ONE = 1, TWO = 2;
-    public static ArrayList<ContactPerson> people = new ArrayList<ContactPerson>();
-    static Scanner scan = new Scanner(System.in);
-=======
     static Scanner scan = new Scanner(System.in);
     public static ArrayList<ContactPerson> people = new ArrayList<ContactPerson>();
     static final int ZERO = 0, ONE = 1, TWO = 2;
->>>>>>> UC5-multiple_contacts
 
-    public static void main(String[] args) {
+    public static void main(String args[]) {
         int choice = 0;
         AddressBook contact = new AddressBook();
         System.out.println("----- Welcome to Address Book Program -----");
-        while (choice < 6) {
-<<<<<<< HEAD
-<<<<<<<HEAD
-            System.out.println("Enter your choice \n\t 1.Add Contact \n\t 2.PrintContact \n\t 3.EditContact ");
-=======
-            System.out.println("Enter your choice " +
-=======
+        while (choice < 7) {
             System.out.println("\nEnter your choice " +
->>>>>>> UC5-multiple_contacts
                     "\n\t 1.Add Contact " +
                     "\n\t 2.PrintContact " +
                     "\n\t 3.Edit Contact " +
                     "\n\t 4.Delete Contact" +
                     "\n\t 5. Sorting by First Name" +
-                    "\n\t 6. Exit from menu ");
->>>>>>>UC4 - delete_contact
+                    "\n\t 6. Sorting by City Name" +
+                    "\n\t 7. Exit from menu ");
             choice = scan.nextInt();
             switch (choice) {
                 case 1:
@@ -49,6 +36,9 @@ public class AddressBook {
                     break;
                 case 5:
                     contact.sortByName();
+                    break;
+                case 6:
+                    contact.sortByCity();
                     break;
             }
         }
@@ -153,6 +143,38 @@ public class AddressBook {
         }
     }
 
+    public void sortByCity() {
+        String tmpfname, tmplname, tmpaddr, tmpcity, tmpstate;
+        long tmpzip, tmpmobNo;
+        for (int count1 = ZERO; count1 < people.size() - 1; count1++) {
+            for (int count2 = count1 + 1; count2 < people.size(); count2++) {
+                if (people.get(count1).getCity().compareTo(people.get(count2).getCity()) > 0) {
+                    tmpfname = people.get(count2).getfname();
+                    people.get(count2).setfname(people.get(count1).getfname());
+                    people.get(count1).setfname(tmpfname);
+                    tmplname = people.get(count2).getlname();
+                    people.get(count2).setlname(people.get(count1).getlname());
+                    people.get(count1).setlname(tmplname);
+                    tmpaddr = people.get(count2).getAddress();
+                    people.get(count2).setAddress(people.get(count1).getAddress());
+                    people.get(count1).setAddress(tmpaddr);
+                    tmpcity = people.get(count2).getCity();
+                    people.get(count2).setCity(people.get(count1).getCity());
+                    people.get(count1).setCity(tmpcity);
+                    tmpstate = people.get(count2).getState();
+                    people.get(count2).setState(people.get(count1).getState());
+                    people.get(count1).setState(tmpstate);
+                    tmpzip = people.get(count2).getZip();
+                    people.get(count2).setZip(people.get(count1).getZip());
+                    people.get(count1).setZip(tmpzip);
+                    tmpmobNo = people.get(count2).getPhonenumber();
+                    people.get(count2).setNumber(people.get(count1).getPhonenumber());
+                    people.get(count1).setNumber(tmpmobNo);
+                }
+            }
+        }
+    }
+
     public void deleteContact() {
         if (people.isEmpty()) {
             System.out.println("There is no contact to delete");
@@ -176,9 +198,6 @@ public class AddressBook {
             }
         }
     }
-<<<<<<< HEAD
-}
-=======
 
     public boolean checkExist(String name)
     {
@@ -194,5 +213,5 @@ public class AddressBook {
         }
         return false;
     }
+
 }
->>>>>>> UC6-no_duplicates
