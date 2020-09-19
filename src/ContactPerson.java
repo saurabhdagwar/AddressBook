@@ -1,3 +1,5 @@
+import java.util.Comparator;
+
 public class ContactPerson {
     private String fname;
     private String lname;
@@ -25,45 +27,67 @@ public class ContactPerson {
         return lname;
     }
 
-    public String getAddress(String address) {
+    public static Comparator<ContactPerson> firstNameSort = new Comparator<ContactPerson>() {
+        public String fname, lname, address, city, state;
+        public long phonenumber, zip;
+
+        @Override
+        public int compare(ContactPerson o1, ContactPerson o2) {
+            String fname1 = o1.getfname();
+            String fname2 = o2.getfname();
+            return fname1.compareTo(fname2);
+        }
+    };
+
+    public String getAddress() {
         return address;
     }
 
-    public String getCity(String city) {
-        return city;
-    }
-
-    public String getState(String state) {
-        return state;
-    }
-
-    public long getNumber(long phonenumber) {
-        return phonenumber;
-    }
-
-    public long getzip(long zip) {
-        return zip;
-    }
-
-    public void setAddress(String address){
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    public void setCity(String city){
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
         this.city = city;
     }
-    public void setState(String state){
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
         this.state = state;
     }
 
-    public void setZip( long zip){
+    public long getZip() {
+        return zip;
+    }
+
+    public void setZip(long zip) {
         this.zip = zip;
     }
 
-    public void setNumber( long phonenumber){
+    public long getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setfname(String fname) {
+        this.fname = fname;
+    }
+
+    public void setlname(String lname) {
+        this.lname = lname;
+    }
+
+    public void setNumber(long phonenumber) {
         this.phonenumber = phonenumber;
     }
+
     public String toString() {
-        return "Name: " + fname + " " + lname + ", Address: " + address + ", City: " + city + ",State: " + state + ",Phone: " + phonenumber + ",Pin Code: " + zip +" | " ;
+        return "Name: " + fname + " " + lname + ", Address: " + address + ", City: " + city + ",State: " + state + ",Phone: " + phonenumber + ",Pin Code: " + zip + " | ";
     }
 }
