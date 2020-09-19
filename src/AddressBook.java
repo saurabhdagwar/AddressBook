@@ -2,13 +2,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
-    static Scanner scan = new Scanner(System.in);
+    static final int ZERO = 0, ONE = 1, TWO = 2;
     public static ArrayList<ContactPerson> people = new ArrayList<ContactPerson>();
     public static ArrayList<String> peopleCities = new ArrayList<>();
     public static ArrayList<String> peopleStates = new ArrayList<>();
-    static final int ZERO = 0, ONE = 1, TWO = 2;
+    static Scanner scan = new Scanner(System.in);
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         int choice = 0;
         AddressBook contact = new AddressBook();
         System.out.println("----- Welcome to Address Book Program -----");
@@ -74,6 +74,7 @@ public class AddressBook {
             people.add(person1);
         }
     }
+
     public void editContact() {
         if (people.isEmpty()) {
             System.out.println("There are no contacts to edit ");
@@ -205,10 +206,9 @@ public class AddressBook {
         }
     }
 
-    public boolean checkExist(String name)
-    {
+    public boolean checkExist(String name) {
         int flag = ZERO;
-        for(ContactPerson person : people){
+        for (ContactPerson person : people) {
             if (person.getfname().equals(name)) {
                 flag = 1;
                 break;
@@ -225,11 +225,10 @@ public class AddressBook {
             peopleStates.add(person.getState());
         }
         System.out.print("Cities of Contacts : \t ");
-            System.out.println(peopleCities);
+        System.out.println(peopleCities);
 
         System.out.print("States of Contacts : \t ");
-            System.out.println(peopleStates);
+        System.out.println(peopleStates);
 
     }
-
 }
