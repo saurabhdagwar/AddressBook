@@ -4,13 +4,15 @@ import java.util.Scanner;
 public class AddressBook {
     static Scanner scan = new Scanner(System.in);
     public static ArrayList<ContactPerson> people = new ArrayList<ContactPerson>();
+    public static ArrayList<String> peopleCities = new ArrayList<>();
+    public static ArrayList<String> peopleStates = new ArrayList<>();
     static final int ZERO = 0, ONE = 1, TWO = 2;
 
     public static void main(String args[]) {
         int choice = 0;
         AddressBook contact = new AddressBook();
         System.out.println("----- Welcome to Address Book Program -----");
-        while (choice < 7) {
+        while (choice < 8) {
             System.out.println("\nEnter your choice " +
                     "\n\t 1.Add Contact " +
                     "\n\t 2.PrintContact " +
@@ -18,7 +20,8 @@ public class AddressBook {
                     "\n\t 4.Delete Contact" +
                     "\n\t 5. Sorting by First Name" +
                     "\n\t 6. Sorting by City Name" +
-                    "\n\t 7. Exit from menu ");
+                    "\n\t 7. View Cities and State of Contacts" +
+                    "\n\t 8. Exit from menu ");
             choice = scan.nextInt();
             switch (choice) {
                 case 1:
@@ -39,6 +42,9 @@ public class AddressBook {
                     break;
                 case 6:
                     contact.sortByCity();
+                    break;
+                case 7:
+                    contact.viewCityState();
                     break;
             }
         }
@@ -203,15 +209,27 @@ public class AddressBook {
     {
         int flag = ZERO;
         for(ContactPerson person : people){
-            if(person.getfname().equals(name)){
+            if (person.getfname().equals(name)) {
                 flag = 1;
                 break;
             }
         }
-        if(flag == ONE ){
-            return true;
+        return flag == ONE;
+    }
+
+    public void viewCityState() {
+        for (ContactPerson person : people) {
+            peopleCities.add(person.getCity());
         }
-        return false;
+        for (ContactPerson person : people) {
+            peopleStates.add(person.getState());
+        }
+        System.out.print("Cities of Contacts : \t ");
+            System.out.println(peopleCities);
+
+        System.out.print("States of Contacts : \t ");
+            System.out.println(peopleStates);
+
     }
 
 }
