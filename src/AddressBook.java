@@ -12,7 +12,7 @@ public class AddressBook {
         int choice = 0;
         AddressBook contact = new AddressBook();
         System.out.println("----- Welcome to Address Book Program -----");
-        while (choice < 8) {
+        while (choice < 9) {
             System.out.println("\nEnter your choice " +
                     "\n\t 1.Add Contact " +
                     "\n\t 2.PrintContact " +
@@ -20,8 +20,9 @@ public class AddressBook {
                     "\n\t 4.Delete Contact" +
                     "\n\t 5. Sorting by First Name" +
                     "\n\t 6. Sorting by City Name" +
-                    "\n\t 7. View Cities and State of Contacts" +
-                    "\n\t 8. Exit from menu ");
+                    "\n\t 7. View Cities and State of Contacts " +
+                    "\n\t 8. Search contacts in Cities and States " +
+                    "\n\t 9. Exit from menu ");
             choice = scan.nextInt();
             switch (choice) {
                 case 1:
@@ -45,6 +46,9 @@ public class AddressBook {
                     break;
                 case 7:
                     contact.viewCityState();
+                    break;
+                case 8:
+                    contact.searchContact();
                     break;
             }
         }
@@ -225,11 +229,39 @@ public class AddressBook {
             peopleStates.add(person.getState());
         }
         System.out.print("Cities of Contacts : \t ");
-            System.out.println(peopleCities);
+        System.out.println(peopleCities);
 
         System.out.print("States of Contacts : \t ");
-            System.out.println(peopleStates);
+        System.out.println(peopleStates);
 
+    }
+
+    public void searchContact() {
+        int choice = ZERO;
+        String city, state;
+        System.out.println("\n\t 1.Search Contact in cities :" +
+                            "\n\t 2. Search Contacts in State ");
+        choice = scan.nextInt();
+        if (choice == ONE) {
+            System.out.printf("Enter Cities : ");
+            city = scan.next();
+            for(int count = ZERO; count < people.size();count++)
+            {
+                if(people.get(count).getCity() == city){
+                    System.out.println(count+". "+people.get(count).getfname());
+                }
+            }
+        }
+        else if(choice == TWO){
+            System.out.printf("Enter State");
+            state = scan.next();
+            for(int count = ZERO; count < people.size();count++)
+            {
+                if(people.get(count).getState() == state){
+                    System.out.println(count+". "+people.get(count).toString());
+                }
+            }
+        }
     }
 
 }
