@@ -2,17 +2,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
-    static final int ZERO = 0, ONE = 1, TWO = 2;
+    static Scanner scan = new Scanner(System.in);
     public static ArrayList<ContactPerson> people = new ArrayList<ContactPerson>();
     public static ArrayList<String> peopleCities = new ArrayList<>();
     public static ArrayList<String> peopleStates = new ArrayList<>();
-    static Scanner scan = new Scanner(System.in);
+    static final int ZERO = 0, ONE = 1, TWO = 2;
 
-    public static void main(String[] args) {
+    public static void main(String args[]) {
         int choice = 0;
         AddressBook contact = new AddressBook();
         System.out.println("----- Welcome to Address Book Program -----");
-        while (choice < 8) {
+        while (choice < 9) {
             System.out.println("\nEnter your choice " +
                     "\n\t 1.Add Contact " +
                     "\n\t 2.PrintContact " +
@@ -20,8 +20,9 @@ public class AddressBook {
                     "\n\t 4.Delete Contact" +
                     "\n\t 5. Sorting by First Name" +
                     "\n\t 6. Sorting by City Name" +
-                    "\n\t 7. View Cities and State of Contacts" +
-                    "\n\t 8. Exit from menu ");
+                    "\n\t 7. View Cities and State of Contacts " +
+                    "\n\t 8. Search contacts in Cities and States " +
+                    "\n\t 9. Exit from menu ");
             choice = scan.nextInt();
             switch (choice) {
                 case 1:
@@ -45,6 +46,9 @@ public class AddressBook {
                     break;
                 case 7:
                     contact.viewCityState();
+                    break;
+                case 8:
+                    contact.searchContact();
                     break;
             }
         }
@@ -74,7 +78,6 @@ public class AddressBook {
             people.add(person1);
         }
     }
-
     public void editContact() {
         if (people.isEmpty()) {
             System.out.println("There are no contacts to edit ");
@@ -206,9 +209,10 @@ public class AddressBook {
         }
     }
 
-    public boolean checkExist(String name) {
+    public boolean checkExist(String name)
+    {
         int flag = ZERO;
-        for (ContactPerson person : people) {
+        for(ContactPerson person : people){
             if (person.getfname().equals(name)) {
                 flag = 1;
                 break;
@@ -231,4 +235,33 @@ public class AddressBook {
         System.out.println(peopleStates);
 
     }
+
+    public void searchContact() {
+        int choice = ZERO;
+        String city, state;
+        System.out.println("\n\t 1.Search Contact in cities :" +
+                "\n\t 2. Search Contacts in State ");
+        choice = scan.nextInt();
+        if (choice == ONE) {
+            System.out.printf("Enter Cities : ");
+            city = scan.next();
+            for(int count = ZERO; count < people.size();count++)
+            {
+                if(people.get(count).getCity().equals(city)){
+                    System.out.println(count+". "+people.get(count).toString());
+                }
+            }
+        }
+        else if(choice == TWO){
+            System.out.printf("Enter State");
+            state = scan.next();
+            for(int count = ZERO; count < people.size();count++)
+            {
+                if(people.get(count).getState().equals(state)){
+                    System.out.println(count+". "+people.get(count).toString());
+                }
+            }
+        }
+    }
+
 }
