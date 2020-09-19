@@ -11,7 +11,16 @@ public class AddressBook {
         AddressBook contact = new AddressBook();
         System.out.println("----- Welcome to Address Book Program -----");
         while (choice < 6) {
+<<<<<<<HEAD
             System.out.println("Enter your choice \n\t 1.Add Contact \n\t 2.PrintContact \n\t 3.EditContact ");
+=======
+            System.out.println("Enter your choice " +
+                    "\n\t 1.Add Contact " +
+                    "\n\t 2.PrintContact " +
+                    "\n\t 3.Edit Contact " +
+                    "\n\t 4.Delete Contact" +
+                    "\n\t 6. Exit from menu ");
+>>>>>>>UC4 - delete_contact
             choice = scan.nextInt();
             switch (choice) {
                 case 1:
@@ -23,25 +32,28 @@ public class AddressBook {
                 case 3:
                     contact.editContact();
                     break;
+                case 4:
+                    contact.deleteContact();
+                    break;
             }
         }
     }
 
     public void addPerson() {
         System.out.println("Enter Person Details to add in contact ");
-        System.out.println("Enter First name :");
+        System.out.println("\tEnter First name :");
         String fname = scan.next();
-        System.out.println("Enter Last name :");
+        System.out.println("\tEnter Last name :");
         String lname = scan.next();
-        System.out.println("Enter Address :");
+        System.out.println("\tEnter Address :");
         String address = scan.next();
-        System.out.println("Enter City :");
+        System.out.println("\tEnter City :");
         String city = scan.next();
-        System.out.println("Enter State :");
+        System.out.println("\tEnter State :");
         String state = scan.next();
-        System.out.println("Enter Zip code :");
+        System.out.println("\tEnter Zip code :");
         long zip = scan.nextLong();
-        System.out.println("Enter Phone number :");
+        System.out.println("\tEnter Phone number :");
         long phonenumber = scan.nextLong();
 
         ContactPerson person1 = new ContactPerson(fname, lname, address, city, state, zip, phonenumber);
@@ -87,10 +99,28 @@ public class AddressBook {
         }
     }
 
+    public void deleteContact() {
+        if (people.isEmpty()) {
+            System.out.println("There is no contact to delete");
+        } else {
+            System.out.println("Enter First name to remove contact ");
+            String fname = scan.next();
+            for (int count = 0; count < people.size(); count++) {
+                if (people.get(count).getfname().equals(fname)) {
+                    people.remove(people.get(count));
+                }
+            }
+        }
+    }
+
     public void printContact() {
-        for (ContactPerson contact : people) {
-            System.out.println("Printing Contacts ");
-            System.out.println(contact);
+        if (people.isEmpty()) {
+            System.out.println("There are no contact to print ");
+        } else {
+            for (ContactPerson contact : people) {
+                System.out.println("Printing Contacts ");
+                System.out.println(contact);
+            }
         }
     }
 }
