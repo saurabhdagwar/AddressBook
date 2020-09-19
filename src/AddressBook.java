@@ -2,19 +2,18 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
-    static Scanner scan = new Scanner(System.in);
-    public static ArrayList<ContactPerson> people = new ArrayList<ContactPerson>();
     static final int ONE = 1, TWO = 2;
+    public static ArrayList<ContactPerson> people = new ArrayList<ContactPerson>();
+    static Scanner scan = new Scanner(System.in);
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         int choice = 0;
         AddressBook contact = new AddressBook();
         System.out.println("----- Welcome to Address Book Program -----");
-        while(choice < 6)
-        {
+        while (choice < 6) {
             System.out.println("Enter your choice \n\t 1.Add Contact \n\t 2.PrintContact \n\t 3.EditContact ");
             choice = scan.nextInt();
-            switch(choice){
+            switch (choice) {
                 case 1:
                     contact.addPerson();
                     break;
