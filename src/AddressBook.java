@@ -247,8 +247,8 @@ public class AddressBook {
             city = scan.next();
             for(int count = ZERO; count < people.size();count++)
             {
-                if(people.get(count).getCity() == city){
-                    System.out.println(count+". "+people.get(count).getfname());
+                if(people.get(count).getCity().equals(city)){
+                    System.out.println(count+". "+people.get(count).toString());
                 }
             }
         }
@@ -257,7 +257,7 @@ public class AddressBook {
             state = scan.next();
             for(int count = ZERO; count < people.size();count++)
             {
-                if(people.get(count).getState() == state){
+                if(people.get(count).getState().equals(state)){
                     System.out.println(count+". "+people.get(count).toString());
                 }
             }
