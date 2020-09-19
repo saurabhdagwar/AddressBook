@@ -27,17 +27,6 @@ public class ContactPerson {
         return lname;
     }
 
-    public static Comparator<ContactPerson> firstNameSort = new Comparator<ContactPerson>() {
-        public String fname, lname, address, city, state;
-        public long phonenumber, zip;
-
-        @Override
-        public int compare(ContactPerson o1, ContactPerson o2) {
-            String fname1 = o1.getfname();
-            String fname2 = o2.getfname();
-            return fname1.compareTo(fname2);
-        }
-    };
 
     public String getAddress() {
         return address;
