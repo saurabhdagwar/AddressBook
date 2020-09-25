@@ -1,30 +1,30 @@
 import java.util.Comparator;
 
 public class ContactPerson {
-    private String fname;
-    private String lname;
+    private String firstName;
+    private String lastName;
     private String address;
     private String city;
     private String state;
-    private long phonenumber;
+    private long phoneNumber;
     private long zip;
 
-    public ContactPerson(String fname, String lname, String address, String city, String state, long zip, long phonenumber) {
-        this.fname = fname;
-        this.lname = lname;
+    public ContactPerson(String firstName, String lastName, String address, String city, String state, long zip, long phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.address = address;
         this.city = city;
         this.state = state;
-        this.phonenumber = phonenumber;
+        this.phoneNumber = phoneNumber;
         this.zip = zip;
     }
 
-    public String getfname() {
-        return fname;
+    public String getfirstName() {
+        return firstName;
     }
 
-    public String getlname() {
-        return lname;
+    public String getlastName() {
+        return lastName;
     }
 
 
@@ -60,24 +60,24 @@ public class ContactPerson {
         this.zip = zip;
     }
 
-    public long getPhonenumber() {
-        return phonenumber;
+    public long getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setfname(String fname) {
-        this.fname = fname;
+    public void setfirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setlname(String lname) {
-        this.lname = lname;
+    public void setlastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public void setNumber(long phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setNumber(long phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
     public static Comparator<ContactPerson> firstNameSorting = (contact1, contact2) -> {
-        String firstName = contact1.getfname();
-        String firstName2 = contact2.getfname();
+        String firstName = contact1.getfirstName();
+        String firstName2 = contact2.getfirstName();
         return firstName.compareToIgnoreCase(firstName2);
     };
 
@@ -87,6 +87,6 @@ public class ContactPerson {
         return CityName.compareToIgnoreCase(CityName2);
     };
     public String toString() {
-        return "Name: " + fname + " " + lname + ", Address: " + address + ", City: " + city + ",State: " + state + ",Phone: " + phonenumber + ",Pin Code: " + zip + " | ";
+        return "Name: " + firstName + " " + lastName + ", Address: " + address + ", City: " + city + ",State: " + state + ",Phone: " + phoneNumber + ",Pin Code: " + zip + " | ";
     }
 }

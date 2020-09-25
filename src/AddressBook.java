@@ -1,16 +1,15 @@
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class AddressBook {
-    static Scanner scan = new Scanner(System.in);
+    static final int ZERO = 0, ONE = 1, TWO = 2;
     public static List<ContactPerson> people = new ArrayList<>();
     public static ArrayList<String> peopleCities = new ArrayList<>();
     public static ArrayList<String> peopleStates = new ArrayList<>();
-    static final int ZERO = 0, ONE = 1, TWO = 2;
+    static Scanner scan = new Scanner(System.in);
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         int choice = 0;
         AddressBook contact = new AddressBook();
         System.out.println("----- Welcome to Address Book Program -----");
@@ -60,12 +59,12 @@ public class AddressBook {
     public void addPerson() {
         System.out.println("Enter Person Details to add in contact ");
         System.out.print("\tEnter First name :");
-        String fname = scan.next();
-        if (checkExist(fname)) {
+        String firstName = scan.next();
+        if (checkExist(firstName)) {
             System.out.println("Contact is exist, Enter different name ");
         } else {
             System.out.print("\tEnter Last name :");
-            String lname = scan.next();
+            String lastName = scan.next();
             System.out.print("\tEnter Address :");
             String address = scan.next();
             System.out.print("\tEnter City :");
@@ -75,21 +74,21 @@ public class AddressBook {
             System.out.print("\tEnter Zip code :");
             long zip = scan.nextLong();
             System.out.print("\tEnter Phone number :");
-            long phonenumber = scan.nextLong();
+            long phoneNumber = scan.nextLong();
 
-            ContactPerson person1 = new ContactPerson(fname, lname, address, city, state, zip, phonenumber);
+            ContactPerson person1 = new ContactPerson(firstName, lastName, address, city, state, zip, phoneNumber);
             people.add(person1);
             System.out.println("Successfully Added : \n ");
         }
     }
+
     public void editContact() {
         if (people.isEmpty()) {
             System.out.println("There are no contacts to edit ");
         } else {
-            String fname, lname, address, city, state;
+            String address, city, state;
             long phone, zip;
             int id;
-            int count = ZERO;
             for (ContactPerson contact : people) {
                 System.out.println("ID: #" + people.indexOf(contact) + " : " + contact);
             }
@@ -142,7 +141,7 @@ public class AddressBook {
             System.out.println("Enter First name to remove contact ");
             String fname = scan.next();
             for (int count = ZERO; count < people.size(); count++) {
-                if (people.get(count).getfname().equals(fname)) {
+                if (people.get(count).getfirstName().equals(fname)) {
                     people.remove(people.get(count));
                 }
             }
@@ -159,11 +158,10 @@ public class AddressBook {
         }
     }
 
-    public boolean checkExist(String name)
-    {
+    public boolean checkExist(String name) {
         int flag = ZERO;
-        for(ContactPerson person : people){
-            if (person.getfname().equals(name)) {
+        for (ContactPerson person : people) {
+            if (person.getfirstName().equals(name)) {
                 flag = 1;
                 break;
             }
@@ -183,11 +181,10 @@ public class AddressBook {
 
         System.out.print("States of Contacts : \t ");
         System.out.println(peopleStates);
-
     }
 
     public void searchContact() {
-        int choice = ZERO;
+        int choice ;
         String city, state;
         System.out.println("\n\t 1.Search Contact in cities :" +
                 "\n\t 2. Search Contacts in State ");
@@ -195,23 +192,19 @@ public class AddressBook {
         if (choice == ONE) {
             System.out.printf("Enter Cities : ");
             city = scan.next();
-            for(int count = ZERO; count < people.size();count++)
-            {
-                if(people.get(count).getCity().equals(city)){
-                    System.out.println(count+". "+people.get(count).toString());
+            for (int count = ZERO; count < people.size(); count++) {
+                if (people.get(count).getCity().equals(city)) {
+                    System.out.println(count + ". " + people.get(count).toString());
                 }
             }
-        }
-        else if(choice == TWO){
-            System.out.printf("Enter State");
+        } else if (choice == TWO) {
+            System.out.printf("Enter State : ");
             state = scan.next();
-            for(int count = ZERO; count < people.size();count++)
-            {
-                if(people.get(count).getState().equals(state)){
-                    System.out.println(count+". "+people.get(count).toString());
+            for (int count = ZERO; count < people.size(); count++) {
+                if (people.get(count).getState().equals(state)) {
+                    System.out.println(count + ". " + people.get(count).toString());
                 }
             }
         }
     }
-
 }
