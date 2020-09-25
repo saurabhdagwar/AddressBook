@@ -1,10 +1,11 @@
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class AddressBook {
     static Scanner scan = new Scanner(System.in);
-    public static ArrayList<ContactPerson> people = new ArrayList<ContactPerson>();
+    public static List<ContactPerson> people = new ArrayList<>();
     public static ArrayList<String> peopleCities = new ArrayList<>();
     public static ArrayList<String> peopleStates = new ArrayList<>();
     static final int ZERO = 0, ONE = 1, TWO = 2;
@@ -14,6 +15,7 @@ public class AddressBook {
         AddressBook contact = new AddressBook();
         System.out.println("----- Welcome to Address Book Program -----");
         while (choice < 9) {
+            System.out.println(" ---------- Menu ---------- ");
             System.out.println("\nEnter your choice " +
                     "\n\t 1.Add Contact " +
                     "\n\t 2.PrintContact " +
@@ -23,7 +25,7 @@ public class AddressBook {
                     "\n\t 6. Sorting by City Name" +
                     "\n\t 7. View Cities and State of Contacts " +
                     "\n\t 8. Search contacts in Cities and States " +
-                    "\n\t 9. Exit from menu ");
+                    "\n\t 9. Exit from menu : ");
             choice = scan.nextInt();
             switch (choice) {
                 case 1:

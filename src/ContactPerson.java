@@ -75,7 +75,6 @@ public class ContactPerson {
     public void setNumber(long phonenumber) {
         this.phonenumber = phonenumber;
     }
-
     public static Comparator<ContactPerson> firstNameSorting = (contact1, contact2) -> {
         String firstName = contact1.getfname();
         String firstName2 = contact2.getfname();
@@ -87,7 +86,6 @@ public class ContactPerson {
         String CityName2 = contact2.getCity();
         return CityName.compareToIgnoreCase(CityName2);
     };
-
     public String toString() {
         return "Name: " + fname + " " + lname + ", Address: " + address + ", City: " + city + ",State: " + state + ",Phone: " + phonenumber + ",Pin Code: " + zip + " | ";
     }
