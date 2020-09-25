@@ -1,9 +1,11 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class AddressBook {
     static Scanner scan = new Scanner(System.in);
-    public static ArrayList<ContactPerson> people = new ArrayList<ContactPerson>();
+    public static List<ContactPerson> people = new ArrayList<>();
     public static ArrayList<String> peopleCities = new ArrayList<>();
     public static ArrayList<String> peopleStates = new ArrayList<>();
     static final int ZERO = 0, ONE = 1, TWO = 2;
@@ -13,6 +15,7 @@ public class AddressBook {
         AddressBook contact = new AddressBook();
         System.out.println("----- Welcome to Address Book Program -----");
         while (choice < 9) {
+            System.out.println(" ---------- Menu ---------- ");
             System.out.println("\nEnter your choice " +
                     "\n\t 1.Add Contact " +
                     "\n\t 2.PrintContact " +
@@ -22,7 +25,7 @@ public class AddressBook {
                     "\n\t 6. Sorting by City Name" +
                     "\n\t 7. View Cities and State of Contacts " +
                     "\n\t 8. Search contacts in Cities and States " +
-                    "\n\t 9. Exit from menu ");
+                    "\n\t 9. Exit from menu : ");
             choice = scan.nextInt();
             switch (choice) {
                 case 1:
@@ -56,26 +59,27 @@ public class AddressBook {
 
     public void addPerson() {
         System.out.println("Enter Person Details to add in contact ");
-        System.out.println("\tEnter First name :");
+        System.out.print("\tEnter First name :");
         String fname = scan.next();
         if (checkExist(fname)) {
             System.out.println("Contact is exist, Enter different name ");
         } else {
-            System.out.println("\tEnter Last name :");
+            System.out.print("\tEnter Last name :");
             String lname = scan.next();
-            System.out.println("\tEnter Address :");
+            System.out.print("\tEnter Address :");
             String address = scan.next();
-            System.out.println("\tEnter City :");
+            System.out.print("\tEnter City :");
             String city = scan.next();
-            System.out.println("\tEnter State :");
+            System.out.print("\tEnter State :");
             String state = scan.next();
-            System.out.println("\tEnter Zip code :");
+            System.out.print("\tEnter Zip code :");
             long zip = scan.nextLong();
-            System.out.println("\tEnter Phone number :");
+            System.out.print("\tEnter Phone number :");
             long phonenumber = scan.nextLong();
 
             ContactPerson person1 = new ContactPerson(fname, lname, address, city, state, zip, phonenumber);
             people.add(person1);
+            System.out.println("Successfully Added : \n ");
         }
     }
     public void editContact() {
@@ -122,67 +126,13 @@ public class AddressBook {
     }
 
     public void sortByName() {
-        String tmpfname, tmplname, tmpaddr, tmpcity, tmpstate;
-        long tmpzip, tmpmobNo;
-        for (int count1 = ZERO; count1 < people.size() - 1; count1++) {
-            for (int count2 = count1 + 1; count2 < people.size(); count2++) {
-                if (people.get(count1).getfname().compareTo(people.get(count2).getfname()) > 0) {
-                    tmpfname = people.get(count2).getfname();
-                    people.get(count2).setfname(people.get(count1).getfname());
-                    people.get(count1).setfname(tmpfname);
-                    tmplname = people.get(count2).getlname();
-                    people.get(count2).setlname(people.get(count1).getlname());
-                    people.get(count1).setlname(tmplname);
-                    tmpaddr = people.get(count2).getAddress();
-                    people.get(count2).setAddress(people.get(count1).getAddress());
-                    people.get(count1).setAddress(tmpaddr);
-                    tmpcity = people.get(count2).getCity();
-                    people.get(count2).setCity(people.get(count1).getCity());
-                    people.get(count1).setCity(tmpcity);
-                    tmpstate = people.get(count2).getState();
-                    people.get(count2).setState(people.get(count1).getState());
-                    people.get(count1).setState(tmpstate);
-                    tmpzip = people.get(count2).getZip();
-                    people.get(count2).setZip(people.get(count1).getZip());
-                    people.get(count1).setZip(tmpzip);
-                    tmpmobNo = people.get(count2).getPhonenumber();
-                    people.get(count2).setNumber(people.get(count1).getPhonenumber());
-                    people.get(count1).setNumber(tmpmobNo);
-                }
-            }
-        }
+        people.sort(ContactPerson.firstNameSorting);
+        people.forEach(System.out::println);
     }
 
     public void sortByCity() {
-        String tmpfname, tmplname, tmpaddr, tmpcity, tmpstate;
-        long tmpzip, tmpmobNo;
-        for (int count1 = ZERO; count1 < people.size() - 1; count1++) {
-            for (int count2 = count1 + 1; count2 < people.size(); count2++) {
-                if (people.get(count1).getCity().compareTo(people.get(count2).getCity()) > 0) {
-                    tmpfname = people.get(count2).getfname();
-                    people.get(count2).setfname(people.get(count1).getfname());
-                    people.get(count1).setfname(tmpfname);
-                    tmplname = people.get(count2).getlname();
-                    people.get(count2).setlname(people.get(count1).getlname());
-                    people.get(count1).setlname(tmplname);
-                    tmpaddr = people.get(count2).getAddress();
-                    people.get(count2).setAddress(people.get(count1).getAddress());
-                    people.get(count1).setAddress(tmpaddr);
-                    tmpcity = people.get(count2).getCity();
-                    people.get(count2).setCity(people.get(count1).getCity());
-                    people.get(count1).setCity(tmpcity);
-                    tmpstate = people.get(count2).getState();
-                    people.get(count2).setState(people.get(count1).getState());
-                    people.get(count1).setState(tmpstate);
-                    tmpzip = people.get(count2).getZip();
-                    people.get(count2).setZip(people.get(count1).getZip());
-                    people.get(count1).setZip(tmpzip);
-                    tmpmobNo = people.get(count2).getPhonenumber();
-                    people.get(count2).setNumber(people.get(count1).getPhonenumber());
-                    people.get(count1).setNumber(tmpmobNo);
-                }
-            }
-        }
+        people.sort(ContactPerson.CitySorting);
+        people.forEach(System.out::println);
     }
 
     public void deleteContact() {
